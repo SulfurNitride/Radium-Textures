@@ -1,11 +1,14 @@
 # Radium Textures
 
+<img width="1825" height="1645" alt="image" src="https://github.com/user-attachments/assets/2f2d23cb-ec47-4cfb-a367-d58f49218267" />
+
+
 **Skyrim texture optimization for Linux with MO2 support. Fallout 4 support coming soon!**
 
 ## Requirements
 
 ### Build Requirements
-- Rust 1.70+ (edition 2021)
+- Rust 1.70+
 - Cargo
 
 ### Runtime Requirements
@@ -45,9 +48,9 @@ The release binary will be in `target/release/radium-textures`.
 ## Credits
 
 - **Port Of:** VRAMr by gavwhittaker
-- **Development:** Radium Textures
 - **texconv:** Microsoft DirectXTex library
 
 ## License
 
 MIT License
+
