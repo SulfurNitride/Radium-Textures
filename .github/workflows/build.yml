@@ -59,9 +59,17 @@ jobs:
     - name: Build release
       run: cargo build --release --verbose
 
+    - name: Prepare artifact bundle
+      run: |
+        mkdir -p artifact
+        cp target/release/radium-textures artifact/
+        cp texconv.exe artifact/
+        cp -r exclusions artifact/
+        cp README.md artifact/
+
     - name: Upload artifacts
       uses: actions/upload-artifact@v4
       with:
         name: radium-textures-linux
-        path: target/release/radium-textures
+        path: artifact/
         retention-days: 7
