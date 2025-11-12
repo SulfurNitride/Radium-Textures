@@ -1,0 +1,58 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  release:
+    name: Build and Release
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Install Rust toolchain
+      uses: dtolnay/rust-toolchain@stable
+      with:
+        toolchain: stable
+
+    - name: Build release
+      run: cargo build --release --verbose
+
+    - name: Create release archive
+      run: |
+        mkdir -p release
+        cp target/release/radium-textures release/
+        cp texconv.exe release/
+        cp -r exclusions release/
+        cp README.md release/
+        cd release
+        tar -czf ../radium-textures-${{ github.ref_name }}-linux-x64.tar.gz *
+
+    - name: Create GitHub Release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: |
+          radium-textures-${{ github.ref_name }}-linux-x64.tar.gz
+        body: |
+          ## Radium Textures ${{ github.ref_name }}
+
+          Skyrim texture optimization for Linux with MO2 support.
+
+          ### Installation
+          1. Extract the archive
+          2. Ensure Wine is installed
+          3. Run: `./radium-textures gui`
+
+          ### Changes
+          See commit history for details.
+        draft: false
+        prerelease: false
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
