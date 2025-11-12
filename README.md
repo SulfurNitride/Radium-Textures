@@ -29,6 +29,11 @@ The release binary will be in `target/release/radium-textures`.
 ## Usage
 
 ### GUI Mode
+
+```bash
+chmod +x ./radium-textures
+```
+Either by double clicking it or:
 ```bash
 ./radium-textures gui
 ```
@@ -53,4 +58,5 @@ The release binary will be in `target/release/radium-textures`.
 ## License
 
 MIT License
+
 
